@@ -1,0 +1,27 @@
+<job>
+ <runtime>
+  <named name="file" helpstring="Путь к файлу сценария" required="true" type="string"/>
+  <named name="cert" helpstring="Имя цифрового сертификата" required="true" type="string"/>
+  <description>
+  Имя: SignScript.wsf
+  Описание: Добавление цифровой подписи к файлам 
+            со сценариями WSH
+  </description>
+  <example>
+  Пример:
+  SignScript.wsf  /file:Signed.wsf /cert:"Попов надежный"
+  </example>
+ </runtime>
+ <script language="JScript">
+  var Signer, File, Cert, Store;
+  if (!(WScript.Arguments.Named.Exists("cert") && WScript.Arguments.Named.Exists("file"))) {
+   WScript.Arguments.ShowUsage();
+   WScript.Quit();
+  }
+  Signer = WScript.CreateObject("Scripting.Signer");
+  File = WScript.Arguments.Named("file");
+  Cert = WScript.Arguments.Named("cert");
+  Store = "";
+  Signer.SignFile(File, Cert);
+ </script>
+</job>

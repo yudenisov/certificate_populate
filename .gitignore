@@ -43,7 +43,7 @@ obj/
 # Certificates Files
 # ========================
 *.cer
-*.clr
+*.crl
 *.pfx
 *.pvk
 *.spc
